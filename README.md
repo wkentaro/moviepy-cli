@@ -1,7 +1,6 @@
 # moviepy-cli
 
-Moviepy-cli is designed to apply several video editing in a single command and  
-to be used as an alternative to [video-cli](https://github.com/wkentaro/video-cli).
+Moviepy-cli is designed to apply **several video editing in a single command** and to be used as an alternative to [video-cli](https://github.com/wkentaro/video-cli).
 
 ## Usage
 
