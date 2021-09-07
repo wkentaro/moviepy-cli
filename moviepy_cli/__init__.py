@@ -14,6 +14,7 @@ def main():
     parser.add_argument("--end", help="end time")
     parser.add_argument("--retime", type=float, help="retime")
     parser.add_argument("--inplace", "-i", action="store_true", help="inplace")
+    parser.add_argument("--scale", type=float, help="scale")
     parser.add_argument(
         "--output-file", "-o", type=path.Path, help="output file"
     )
@@ -27,6 +28,8 @@ def main():
         clip = clip.subclip(args.start, args.end)
     if args.retime:
         clip = clip.fx(moviepy.editor.vfx.speedx, args.retime)
+    if args.scale:
+        clip = clip.resize(args.scale)
 
     if args.output_file is None:
         args.output_file = path.Path(
