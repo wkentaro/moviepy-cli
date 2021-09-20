@@ -17,6 +17,7 @@ def main():
     parser.add_argument("--scale", type=float, help="scale")
     parser.add_argument("--height", type=int, help="height")
     parser.add_argument("--width", type=int, help="width")
+    parser.add_argument("--fps", type=int, help="fps")
     parser.add_argument(
         "--output-file", "-o", type=path.Path, help="output file"
     )
@@ -34,6 +35,8 @@ def main():
         clip = clip.resize(args.scale)
     if args.height or args.width:
         clip = clip.resize(height=args.height, width=args.width)
+    if args.fps:
+        clip = clip.set_fps(args.fps)
 
     if args.output_file is None:
         args.output_file = path.Path(
