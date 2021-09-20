@@ -7,7 +7,7 @@
 </div>
 
 Moviepy-cli is designed to **apply several video editing in a single command**
-as an alternative to [video-cli](https://github.com/wkentaro/video-cli).
+with [Moviepy](https://github.com/Zulko/moviepy) as an alternative to [Video-cli](https://github.com/wkentaro/video-cli).
 
 ## Installation
 
