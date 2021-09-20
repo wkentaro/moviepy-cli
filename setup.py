@@ -8,7 +8,7 @@ import sys
 
 github_slug = "wkentaro/moviepy-cli"
 name = "moviepy-cli"
-version = "0.1.1"
+version = "1.0.0"
 
 
 if sys.argv[1] == "release":
