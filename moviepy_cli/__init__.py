@@ -39,10 +39,14 @@ def main():
                 dir=args.input_file.parent,
             )
         )
-    clip.write_videofile(args.output_file)
+    clip.write_videofile(
+        args.output_file,
+        ffmpeg_params=["-pix_fmt", "yuv420p"],
+    )
 
     if args.inplace:
         print(
             f"Moviepy-cli - Replacing {args.input_file} by {args.output_file}"
         )
         args.output_file.move(args.input_file)
+
