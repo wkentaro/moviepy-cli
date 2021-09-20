@@ -56,4 +56,3 @@ def main():
             f"Moviepy-cli - Replacing {args.input_file} by {args.output_file}"
         )
         args.output_file.move(args.input_file)
-
