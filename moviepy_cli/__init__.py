@@ -48,7 +48,9 @@ def main():
         )
     clip.write_videofile(
         args.output_file,
+        # following parameters are mainly for QuickTime Player on macOS
         ffmpeg_params=["-pix_fmt", "yuv420p"],
+        audio_codec="aac",
     )
 
     if args.inplace:
