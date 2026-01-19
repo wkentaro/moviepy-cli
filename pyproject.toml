@@ -4,9 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "moviepy-cli"
-version = "1.0.2"
 description = "Command line tools for quick video editing."
-readme = "README.md"
 license = "MIT"
 authors = [
     {name = "Kentaro Wada", email = "www.kentaro.wada@gmail.com"}
@@ -29,6 +27,14 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: 3 :: Only",
 ]
+dynamic = ["readme", "version"]
+
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = "text/markdown"
+fragments = [{ path = "README.md" }]
+
+[tool.hatch.version]
+source = "vcs"
 
 [project.urls]
 Homepage = "http://github.com/wkentaro/moviepy-cli"
