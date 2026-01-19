@@ -1,13 +1,19 @@
 import argparse
+import importlib.metadata
 import tempfile
 
 import moviepy.editor
 import path
 
+__version__: str = importlib.metadata.version("moviepy-cli")
+
 
 def main():
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
+    parser.add_argument(
+        "--version", action="version", version=f"moviepy-cli {__version__}"
     )
     parser.add_argument("input_file", type=path.Path, help="input file")
     parser.add_argument("--start", help="start time")
