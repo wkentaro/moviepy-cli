@@ -1,9 +1,58 @@
-[tool.black]
-line-length = 79
-exclude = '''
-(
-    ^/\..*
-  | ^/docs/
-  | ^/github2pypi/
-)
-'''
+[build-system]
+requires = ["hatchling>=1.20.0", "hatch-vcs", "hatch-fancy-pypi-readme"]
+build-backend = "hatchling.build"
+
+[project]
+name = "moviepy-cli"
+version = "1.0.1"
+description = "Command line tools for quick video editing."
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "Kentaro Wada", email = "www.kentaro.wada@gmail.com"}
+]
+requires-python = ">=3.10"
+dependencies = [
+    "moviepy<2",
+    "path<17",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3 :: Only",
+]
+
+[project.urls]
+Homepage = "http://github.com/wkentaro/moviepy-cli"
+
+[project.scripts]
+moviepy = "moviepy_cli:main"
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle
+    "F",  # pyflakes
+    "I",  # isort
+    "UP",  # pyupgrade
+]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[dependency-groups]
+dev = [
+    "ipython>=8.38.0",
+    "ruff>=0.14.13",
+    "ty>=0.0.12",
+]
