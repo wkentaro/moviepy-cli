@@ -18,9 +18,7 @@ def main():
     parser.add_argument("--height", type=int, help="height")
     parser.add_argument("--width", type=int, help="width")
     parser.add_argument("--fps", type=int, help="fps")
-    parser.add_argument(
-        "--output-file", "-o", type=path.Path, help="output file"
-    )
+    parser.add_argument("--output-file", "-o", type=path.Path, help="output file")
     args = parser.parse_args()
 
     args.input_file = args.input_file.abspath()
@@ -30,17 +28,17 @@ def main():
     if args.start:
         clip = clip.subclip(args.start, args.end)
     if args.retime:
-        clip = clip.fx(moviepy.editor.vfx.speedx, args.retime)
+        clip = clip.fx(moviepy.editor.vfx.speedx, args.retime)  # type: ignore
     if args.scale:
-        clip = clip.resize(args.scale)
+        clip = clip.resize(args.scale)  # type: ignore
     if args.height or args.width:
-        clip = clip.resize(height=args.height, width=args.width)
+        clip = clip.resize(height=args.height, width=args.width)  # type: ignore
     if args.fps:
         clip = clip.set_fps(args.fps)
 
     if args.output_file is None:
         args.output_file = path.Path(
-            tempfile.mktemp(
+            tempfile.mkstemp(
                 prefix=args.input_file.stem + ".",
                 suffix=".mp4",
                 dir=args.input_file.parent,
@@ -54,7 +52,5 @@ def main():
     )
 
     if args.inplace:
-        print(
-            f"Moviepy-cli - Replacing {args.input_file} by {args.output_file}"
-        )
+        print(f"Moviepy-cli - Replacing {args.input_file} by {args.output_file}")
         args.output_file.move(args.input_file)
