@@ -38,7 +38,7 @@ def main():
 
     if args.output_file is None:
         args.output_file = path.Path(
-            tempfile.mkstemp(
+            tempfile.mktemp(  # type: ignore
                 prefix=args.input_file.stem + ".",
                 suffix=".mp4",
                 dir=args.input_file.parent,
