@@ -22,19 +22,26 @@ help:
 		awk 'BEGIN {FS = ":.*?# "}; \
 		{printf "  $(BOLD_BLUE)%-20s$(NC) %s\n", $$1, $$2}'
 
-PACKAGE_NAME:=labelme
+PACKAGE_NAME := moviepy_cli
 
-setup:  # Setup the development environment
+UV_RUN := uv run
+
+setup:  # Setup dev env
 	$(call exec,uv sync)
 
 format:  # Format code
-	$(call exec,uv run ruff format)
-	$(call exec,uv run ruff check --fix)
+	$(call exec,$(UV_RUN) ruff format)
+	$(call exec,$(UV_RUN) ruff check --fix)
+	$(call exec,$(UV_RUN) taplo fmt $(shell git ls-files "*.toml"))
+	$(call exec,$(UV_RUN) mdformat $(shell git ls-files "*.md"))
+	$(call exec,$(UV_RUN) yamlfix $(shell git ls-files "*.yml" "*.yaml"))
+	$(call exec,$(UV_RUN) typos --write-changes)
 
-lint:
-	$(call exec,uv run ruff format --check)
-	$(call exec,uv run ruff check)
-	$(call exec,uv run ty check --no-progress)
-
-# test:  # Run tests
-# 	$(call exec,uv run pytest -v tests/)
+lint:  # Check code
+	$(call exec,$(UV_RUN) ruff format --check)
+	$(call exec,$(UV_RUN) ruff check)
+	$(call exec,$(UV_RUN) ty check --no-progress)
+	$(call exec,$(UV_RUN) taplo fmt --check $(shell git ls-files "*.toml"))
+	$(call exec,$(UV_RUN) mdformat --check $(shell git ls-files "*.md"))
+	$(call exec,$(UV_RUN) yamlfix --check $(shell git ls-files "*.yml" "*.yaml"))
+	$(call exec,$(UV_RUN) typos)

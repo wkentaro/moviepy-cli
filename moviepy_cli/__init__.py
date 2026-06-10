@@ -8,7 +8,7 @@ import path
 __version__: str = importlib.metadata.version("moviepy-cli")
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
